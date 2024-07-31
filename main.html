@@ -35,7 +35,6 @@
   </div>
 
   <script>
-    // Your code goes here 
     const slider = document.querySelector('.items');
     let isDown = false;
     let startX;
@@ -46,6 +45,7 @@
       slider.classList.add('active');
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
+      console.log('mousedown:', { startX, scrollLeft });
     });
 
     slider.addEventListener('mouseleave', () => {
@@ -59,11 +59,12 @@
     });
 
     slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return; 
+      if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 3;
+      const walk = (x - startX) * 3; 
       slider.scrollLeft = scrollLeft - walk;
+      console.log('mousemove:', { x, walk, newScrollLeft: slider.scrollLeft });
     });
   </script>
 </body>
